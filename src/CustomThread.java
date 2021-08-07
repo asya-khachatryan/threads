@@ -1,19 +1,27 @@
-public class CustomThread extends Thread{
+public class CustomThread extends Thread {
+    private boolean exit;
 
-    @Override
-    public synchronized void start() {
-        super.start();
+    public CustomThread() {
+        this.exit = false;
     }
 
-    @Override
     public void run() {
-        super.run();
+        System.out.println("Thread started! State: " + this.getState());
+        int i = 0;
+        while (!exit) {
+            System.out.println(i);
+            i++;
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+        System.out.println("Oops! Thread stopped!");
     }
 
-    public void stopp(){
-        try {int a = 4/0;}
-        catch (ArithmeticException e){
-            System.out.println("Terminating...");
-        }
+    public void stopp() {
+        exit = true;
     }
 }

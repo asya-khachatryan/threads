@@ -4,10 +4,18 @@ public class Demo {
         CustomThread customThread = new CustomThread();
 
         System.out.println("Thread created! State: " + customThread.getState());
+
         customThread.start();
-        System.out.println("Thread started! State: " + customThread.getState());
-        customThread.stopp();
-        System.out.println("Oops! Thread stopped! State: " + customThread.getState());
+
+        try {
+            Thread.sleep(1000);
+            customThread.stopp(); // stopping thread t1
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Thread State: " + customThread.getState());
 
     }
 }
